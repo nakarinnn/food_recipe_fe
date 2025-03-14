@@ -27,7 +27,8 @@ const Navbar = () => {
           confirmButtonText: 'ตกลง',
         }).then((result) => {
           if (result.isConfirmed) {
-            handleLogout();
+            dispatch(clearUser());
+            setMobileMenuOpen(false);
           }
         });
       }
