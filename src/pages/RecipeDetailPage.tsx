@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { useParams } from 'react-router-dom';
@@ -10,7 +10,6 @@ import Loading from '../components/Loading';
 import Footer from '../components/footer';
 import LoginPopup from '../components/LoginPopup';
 import RegisterPopup from '../components/RegisterPopup';
-import RecipeListingTypePage from './RecipeListingTypePage';
 import NotFoundPage from './NotFoundPage';
 
 interface Ingredient {
