@@ -268,7 +268,7 @@ const RecipeListingPage = () => {
 
         <div className="flex justify-center mt-8">
           <Link
-            to="/favorites"
+            to="/myList"
             className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all shadow-md hover:shadow-lg font-medium flex items-center"
           >
             <svg
