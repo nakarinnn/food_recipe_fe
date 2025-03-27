@@ -43,8 +43,8 @@ const RecipeListingPage = () => {
     const fetchData = async () => {
       try {
         const [foodsRes, likesRes] = await Promise.all([
-          axios.get(`/api/food/foodtype/${type}`),
-          user.id ? axios.get(`/api/like/`, {
+          axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/food/foodtype/${type}`),
+          user.id ? axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/`, {
             withCredentials: true
           }) : Promise.resolve({ data: { likedRecipes: [] } }),
         ]);
@@ -75,7 +75,7 @@ const RecipeListingPage = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/like", {
+      const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/like", {
         userId,
         targetId: recipeId,
         targetType: "Food",

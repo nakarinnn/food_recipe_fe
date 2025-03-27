@@ -60,7 +60,7 @@ const RecipeDetailPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.put(`/api/comment/${commentId}`, { text: result.value });
+                    await axios.put(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`, { text: result.value });
                     setComments((prev) =>
                         prev.map((comment) => (comment._id === commentId ? { ...comment, text: result.value } : comment))
                     );
@@ -87,7 +87,7 @@ const RecipeDetailPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(`/api/comment/${commentId}`);
+                    await axios.delete(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`);
                     setComments((prev) => prev.filter((comment) => comment._id !== commentId));
                     Swal.fire("ลบสำเร็จ!", "คอมเมนต์ของคุณถูกลบแล้ว", "success");
                 } catch (error) {
@@ -100,7 +100,7 @@ const RecipeDetailPage = () => {
 
     const getComments = async () => {
         try {
-            const response = await axios.get(`/api/comment/${id}`);
+            const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${id}`);
             setComments(response.data);
         } catch (error) {
             console.error("Error fetching comments:", error);
@@ -110,7 +110,7 @@ const RecipeDetailPage = () => {
     useEffect(() => {
         const getFoods = async () => {
             try {
-                const response = await axios.get(`/api/food/${id}`);
+                const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/food/${id}`);
                 if (!response.data) {
                     setNotFound(true);
                 } else {
@@ -132,7 +132,7 @@ const RecipeDetailPage = () => {
         const getUserLikes = async () => {
             if (!user.id) return;
             try {
-                const response = await axios.get(`/api/like/`,
+                const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/`,
                     {
                         withCredentials: true
                     }
@@ -146,7 +146,7 @@ const RecipeDetailPage = () => {
         const getUserRating = async () => {
             if (!user.id) return;
             try {
-                const response = await axios.post(`/api/rating/get-rating`, {
+                const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + `/api/rating/get-rating`, {
                     foodId: id,
                 }, {
                     withCredentials: true
@@ -171,7 +171,7 @@ const RecipeDetailPage = () => {
     useEffect(() => {
         const getAverageRating = async () => {
             try {
-                const response = await axios.post(`/api/rating/average-rating`, {
+                const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + `/api/rating/average-rating`, {
                     foodId: id,
                 });
                 setAverageRating(response.data)
@@ -195,7 +195,7 @@ const RecipeDetailPage = () => {
             return;
         }
         try {
-            const response = await axios.post("/api/like", {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/like", {
                 targetId: recipeId,
                 targetType: "Food"
             }, {
@@ -219,7 +219,7 @@ const RecipeDetailPage = () => {
             return;
         }
         try {
-            await axios.post("/api/comment", {
+            await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/comment", {
                 foodId: id,
                 text: newComment
             }, {
@@ -241,7 +241,7 @@ const RecipeDetailPage = () => {
             return;
         }
         try {
-            const response = await axios.post("/api/rating", {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/rating", {
                 foodId: foods._id,
                 rating,
             }, {

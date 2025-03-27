@@ -41,7 +41,7 @@ const SearchPage = () => {
     const getFoods = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/food/search/${query}`);
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/food/search/${query}`);
         setFoods(response.data);
         setTotalRecipes(response.data.length)
 
@@ -55,7 +55,7 @@ const SearchPage = () => {
     const getUserLikes = async () => {
       if (!user.id) return;
       try {
-        const response = await axios.get(`/api/like/${user.id}`);
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/${user.id}`);
         setLikedRecipes(response.data.likedRecipes);
       } catch (error) {
         console.error("Error fetching user likes:", error);
@@ -73,7 +73,7 @@ const SearchPage = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/like", {
+      const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/like", {
         userId,
         targetId: recipeId,
         targetType: "Food"

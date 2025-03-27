@@ -54,7 +54,7 @@ const HomePage = () => {
       try {
         const [foodsRes, likesRes] = await Promise.all([
           axios.get(import.meta.env.VITE_BACKEND_URL as string + "/api/food/food-random"),
-          user.id ? axios.get(`/api/like/`, {
+          user.id ? axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/`, {
             withCredentials: true
           }) : Promise.resolve({ data: { likedRecipes: [] } }),
         ]);
@@ -77,7 +77,7 @@ const HomePage = () => {
       return;
     }
     try {
-      const response = await axios.post("/api/like", {
+      const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/like", {
         targetId: recipeId,
         targetType: "Food"
       }, {

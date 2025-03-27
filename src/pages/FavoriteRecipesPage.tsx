@@ -23,7 +23,7 @@ const FavoriteMenuList: React.FC = () => {
     }
 
     try {
-      const response = await axios.get(`/api/like/favoriteMenu`,
+      const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/favoriteMenu`,
         {
           withCredentials: true
         }
@@ -45,7 +45,7 @@ const FavoriteMenuList: React.FC = () => {
         return;
       }
       try {
-        const response = await axios.get(`/api/like/`,
+        const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/like/`,
           {
             withCredentials: true
           }
@@ -64,7 +64,7 @@ const FavoriteMenuList: React.FC = () => {
     const userId = user.id;
     if (!userId) return;
     try {
-      const response = await axios.post("/api/like", {
+      const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + "/api/like", {
         targetId: recipeId,
         targetType: "Food",
       }, {
