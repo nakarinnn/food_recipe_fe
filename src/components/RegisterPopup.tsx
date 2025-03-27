@@ -61,7 +61,7 @@ const RegisterPopup: React.FC<RegisterPopupProps> = ({
         email,
         password,
         avatar_url,
-      });
+      }, { withCredentials: true });
 
       setFormData({
         name: "",

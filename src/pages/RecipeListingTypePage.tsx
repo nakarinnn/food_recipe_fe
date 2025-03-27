@@ -79,7 +79,7 @@ const RecipeListingPage = () => {
         userId,
         targetId: recipeId,
         targetType: "Food",
-      });
+      }, { withCredentials: true });
 
       if (response.data.liked) {
         setLikedRecipes([...likedRecipes, recipeId]);

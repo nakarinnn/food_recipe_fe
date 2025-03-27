@@ -60,7 +60,7 @@ const RecipeDetailPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.put(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`, { text: result.value });
+                    await axios.put(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`, { text: result.value }, { withCredentials: true });
                     setComments((prev) =>
                         prev.map((comment) => (comment._id === commentId ? { ...comment, text: result.value } : comment))
                     );
@@ -87,7 +87,7 @@ const RecipeDetailPage = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.delete(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`);
+                    await axios.delete(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${commentId}`, { withCredentials: true });
                     setComments((prev) => prev.filter((comment) => comment._id !== commentId));
                     Swal.fire("ลบสำเร็จ!", "คอมเมนต์ของคุณถูกลบแล้ว", "success");
                 } catch (error) {
@@ -100,7 +100,7 @@ const RecipeDetailPage = () => {
 
     const getComments = async () => {
         try {
-            const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${id}`);
+            const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/comment/${id}`, { withCredentials: true });
             setComments(response.data);
         } catch (error) {
             console.error("Error fetching comments:", error);
@@ -110,7 +110,7 @@ const RecipeDetailPage = () => {
     useEffect(() => {
         const getFoods = async () => {
             try {
-                const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/food/${id}`);
+                const response = await axios.get(import.meta.env.VITE_BACKEND_URL as string + `/api/food/${id}`, { withCredentials: true });
                 if (!response.data) {
                     setNotFound(true);
                 } else {
@@ -173,7 +173,7 @@ const RecipeDetailPage = () => {
             try {
                 const response = await axios.post(import.meta.env.VITE_BACKEND_URL as string + `/api/rating/average-rating`, {
                     foodId: id,
-                });
+                }, { withCredentials: true });
                 setAverageRating(response.data)
             } catch (error) {
                 console.error("Error fetching user rating:", error);
