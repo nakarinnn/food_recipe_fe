@@ -7,14 +7,14 @@ export default defineConfig({
   define: {
     
   },
-  server: {
-    proxy: {
-      '/api': {
-        target: "https://food-recipe-be-wsb1.onrender.com",
-        // target:  'http://localhost:2000',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
-  },
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: "https://food-recipe-be-wsb1.onrender.com",
+  //       // target:  'http://localhost:2000',
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 })

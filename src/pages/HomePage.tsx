@@ -53,7 +53,7 @@ const HomePage = () => {
     const fetchData = async () => {
       try {
         const [foodsRes, likesRes] = await Promise.all([
-          axios.get("https://food-recipe-be-wsb1.onrender.com/api/food/food-random"),
+          axios.get(import.meta.env.VITE_BACKEND_URL as string + "/api/food/food-random"),
           user.id ? axios.get(`/api/like/`, {
             withCredentials: true
           }) : Promise.resolve({ data: { likedRecipes: [] } }),
